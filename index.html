@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nisha Rao Udayakumar — Senior Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0b1628;
+      --navy-mid: #14253f;
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --slate: #8ca0bb;
+      --white: #f5f7fa;
+      --text: #ccd6e8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--navy); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(11,22,40,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 40%, rgba(201,168,76,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 10% 70%, rgba(30,52,89,0.6) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 6.5vw, 5.5rem); line-height: 1.06; color: var(--white); max-width: 800px; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { margin-top: 1.8rem; font-size: 1.05rem; color: var(--slate); max-width: 560px; line-height: 1.8; }
+    .hero-badges { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .hero-badge { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); border-radius: 20px; padding: 0.3rem 0.9rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; }
+    .hero-cta { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.82rem 2rem; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+    .btn-primary { background: var(--gold); color: var(--navy); border: 1.5px solid var(--gold); font-weight: 500; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--gold); border: 1.5px solid rgba(201,168,76,0.45); }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); transform: translateY(-2px); }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--white); margin-bottom: 3rem; }
+    .divider { width: calc(100% - 8rem); height: 1px; margin: 0 4rem; background: linear-gradient(90deg, rgba(201,168,76,0.25), transparent); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--slate); margin-bottom: 1.2rem; font-size: 1rem; }
+    .about-text .highlight { color: var(--gold); font-weight: 400; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .stat-card { border: 1px solid rgba(201,168,76,0.18); border-radius: 8px; padding: 1.3rem 1.4rem; background: rgba(20,37,63,0.5); transition: border-color 0.25s, transform 0.25s; }
+    .stat-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--gold); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.82rem; color: var(--slate); }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.1)); }
+    .timeline-item { position: relative; margin-bottom: 3rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -2.4rem; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); border: 2px solid var(--navy); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
+    .timeline-role { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.2rem; }
+    .timeline-company { color: var(--gold); font-size: 0.92rem; font-weight: 400; margin-bottom: 0.2rem; }
+    .timeline-meta { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--slate); text-transform: uppercase; margin-bottom: 0.8rem; }
+    .timeline-bullets { padding-left: 1.2rem; }
+    .timeline-bullets li { color: var(--slate); font-size: 0.93rem; margin-bottom: 0.4rem; line-height: 1.65; }
+    .timeline-bullets li::marker { color: var(--gold); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; }
+    .skill-group { background: var(--navy-mid); border: 1px solid rgba(140,160,187,0.12); border-radius: 8px; padding: 1.6rem; transition: border-color 0.25s, transform 0.25s; }
+    .skill-group:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-4px); }
+    .skill-group-title { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-tag { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); color: var(--text); border-radius: 3px; padding: 0.25rem 0.65rem; font-size: 0.8rem; font-family: 'DM Mono', monospace; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card { background: var(--navy-mid); border: 1px solid rgba(140,160,187,0.12); border-radius: 10px; padding: 1.8rem; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity 0.25s; }
+    .project-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+    .project-card:hover::before { opacity: 1; }
+    .project-type { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.7rem; }
+    .project-desc { font-size: 0.9rem; color: var(--slate); margin-bottom: 1.2rem; line-height: 1.7; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { background: rgba(30,52,89,0.8); color: var(--slate); border-radius: 3px; padding: 0.22rem 0.6rem; font-size: 0.74rem; font-family: 'DM Mono', monospace; }
+
+    /* EDUCATION */
+    .edu-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.18); border-radius: 10px; padding: 2rem; display: flex; gap: 1.6rem; align-items: flex-start; }
+    .edu-icon { width: 48px; height: 48px; background: rgba(201,168,76,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .edu-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .edu-degree { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.3rem; }
+    .edu-school { color: var(--gold); font-size: 0.93rem; margin-bottom: 0.2rem; }
+    .edu-meta { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--slate); text-transform: uppercase; }
+
+    /* CONTACT */
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-text p { color: var(--slate); font-size: 1rem; margin-bottom: 1.2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.6rem; }
+    .contact-link-item { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); padding: 0.9rem 1.3rem; border: 1px solid rgba(140,160,187,0.12); border-radius: 8px; background: var(--navy-mid); transition: border-color 0.25s, transform 0.25s; }
+    .contact-link-item:hover { border-color: rgba(201,168,76,0.4); transform: translateX(6px); }
+    .contact-icon { width: 36px; height: 36px; background: rgba(201,168,76,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon svg { width: 17px; height: 17px; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-link-label { font-size: 0.72rem; color: var(--slate); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.15rem; }
+    .contact-link-value { font-size: 0.93rem; color: var(--text); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
+    .form-input, .form-textarea { background: var(--navy-mid); border: 1px solid rgba(140,160,187,0.18); border-radius: 6px; padding: 0.75rem 1rem; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { resize: vertical; min-height: 110px; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(201,168,76,0.1); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; color: var(--slate); font-size: 0.8rem; font-family: 'DM Mono', monospace; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .divider { margin: 0 1.5rem; width: calc(100% - 3rem); }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">NRU</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-eyebrow">Senior Full Stack Developer · NZ Permanent Resident · Open to Opportunities</div>
+  <h1>Nisha Rao<br><em>Udayakumar</em></h1>
+  <p class="hero-sub">Full Stack Developer with 15+ years of commercial experience building scalable web applications across healthcare, enterprise, and digital industries.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">Java &amp; Spring Boot</span>
+    <span class="hero-badge">Angular</span>
+    <span class="hero-badge">React</span>
+    <span class="hero-badge">Node.js</span>
+    <span class="hero-badge">FHIR / Healthcare</span>
+    <span class="hero-badge">CI/CD &amp; DevOps</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01. About Me</div>
+  <div class="section-title">Who I Am</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Senior Full Stack Developer based in Auckland, New Zealand, with over 15 years of commercial experience delivering robust, scalable applications across healthcare, enterprise, and digital industries.</p>
+      <p>My work spans the full stack — from designing RESTful APIs and microservice architectures in Java and Spring Boot, to building rich responsive frontends in Angular and React. I've integrated healthcare systems using FHIR APIs, built production monitoring dashboards with Grafana, and implemented CI/CD pipelines that teams rely on every day.</p>
+      <p>I thrive in Agile environments, enjoy mentoring junior developers, and care deeply about code quality, clean architecture, and solutions that are built to last.</p>
+      <p class="highlight">New Zealand Permanent Resident &mdash; available for full-time roles in Auckland and beyond.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Companies</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Countries</div></div>
+      <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Problems Solved</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">02. Experience</div>
+  <div class="section-title">Career History</div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-role">Senior Full Stack Developer</div>
+      <div class="timeline-company">BW Digital — Auckland, NZ</div>
+      <div class="timeline-meta">April 2024 – Present</div>
+      <ul class="timeline-bullets">
+        <li>Develop and maintain backend services using Java (Spring Boot) and RESTful APIs supporting scalable enterprise applications.</li>
+        <li>Work with Node.js-based services and modern JavaScript frameworks within microservice-style architectures.</li>
+        <li>Contribute to containerized deployments using Docker and support CI/CD pipelines through Jenkins.</li>
+        <li>Monitor production systems using Grafana and participate in incident resolution and troubleshooting.</li>
+        <li>Conduct peer code reviews and participate in sprint planning, technical discussions, and Agile estimation.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-role">Senior Software Developer</div>
+      <div class="timeline-company">UTHSC – University of Texas Health Science Center — San Antonio, TX, USA</div>
+      <div class="timeline-meta">November 2017 – November 2023</div>
+      <ul class="timeline-bullets">
+        <li>Developed and maintained frontend applications using React, creating reusable components and improving user workflows.</li>
+        <li>Integrated healthcare applications using FHIR-based APIs via the AppOrchard interoperability platform, enabling secure exchange of patient and clinical data.</li>
+        <li>Designed and maintained backend services using Java (JSP/JSTL) and Node.js.</li>
+        <li>Improved application performance by refactoring legacy modules and optimising database queries.</li>
+        <li>Mentored junior developers and promoted clean coding and development best practices.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-role">Web Developer</div>
+      <div class="timeline-company">Giles Parscale — San Antonio, TX, USA</div>
+      <div class="timeline-meta">February 2017 – July 2017</div>
+      <ul class="timeline-bullets">
+        <li>Developed backend-integrated web solutions and API-driven features using PHP and JavaScript.</li>
+        <li>Built and customised web applications using Expression Engine and WordPress.</li>
+        <li>Integrated third-party APIs and plugins to extend platform functionality.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-role">Web Developer</div>
+      <div class="timeline-company">Mindlabs Systems — Kerala, India</div>
+      <div class="timeline-meta">August 2009 – February 2014</div>
+      <ul class="timeline-bullets">
+        <li>Designed and developed backend applications using PHP with MySQL and Oracle databases.</li>
+        <li>Integrated third-party REST APIs into enterprise platforms and CMS applications.</li>
+        <li>Built modular, reusable PHP components for dynamic data-driven web platforms.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-role">Web Developer</div>
+      <div class="timeline-company">Reubro International — Kakkanad, India</div>
+      <div class="timeline-meta">July 2008 – August 2009</div>
+      <ul class="timeline-bullets">
+        <li>Developed server-side functionality using core PHP and implemented frontend interactivity with JavaScript and AJAX.</li>
+        <li>Integrated third-party APIs including payment gateways and social media platforms.</li>
+        <li>Assisted in database schema design and data integration using MySQL.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">03. Skills</div>
+  <div class="section-title">Technical Expertise</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Frontend</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Angular 10+</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript ES6+</span>
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3</span>
+        <span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">RxJS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Backend &amp; APIs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Spring Boot</span>
+        <span class="skill-tag">RESTful APIs</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">JSP / JSTL</span>
+        <span class="skill-tag">Microservices</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Oracle</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">DevOps &amp; CI/CD</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Jenkins</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">CI/CD Pipelines</span>
+        <span class="skill-tag">SVN</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Monitoring &amp; Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Grafana</span>
+        <span class="skill-tag">Pentaho</span>
+        <span class="skill-tag">Postman</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Confluence</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frameworks &amp; CMS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">Moodle</span>
+        <span class="skill-tag">Expression Engine</span>
+        <span class="skill-tag">FHIR / AppOrchard</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04. Projects</div>
+  <div class="section-title">Selected Work</div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-type">Healthcare · Integration</div>
+      <div class="project-title">FHIR Health Data Portal</div>
+      <p class="project-desc">Integrated FHIR-based APIs via the AppOrchard interoperability platform to pull and display patient and clinical data for healthcare clients, enabling secure and structured access to medical records.</p>
+      <div class="project-stack"><span class="stack-tag">FHIR API</span><span class="stack-tag">AppOrchard</span><span class="stack-tag">React</span><span class="stack-tag">Java</span><span class="stack-tag">REST</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Monitoring · DevOps</div>
+      <div class="project-title">Grafana Monitoring Dashboards</div>
+      <p class="project-desc">Designed and built Grafana dashboards for real-time visibility into system health, performance metrics, and operational data for production environment monitoring.</p>
+      <div class="project-stack"><span class="stack-tag">Grafana</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">Java</span><span class="stack-tag">Metrics</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Enterprise · Full-Stack</div>
+      <div class="project-title">Customer &amp; Engineering Portals</div>
+      <p class="project-desc">Built a customer-facing Spring Boot portal and an internal engineering portal displaying capacity data, operational metrics, and live network state diagrams to support infrastructure decisions.</p>
+      <div class="project-stack"><span class="stack-tag">Spring Boot</span><span class="stack-tag">Angular</span><span class="stack-tag">React</span><span class="stack-tag">Java</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Backend · Reporting</div>
+      <div class="project-title">Java Servlet Report Builder</div>
+      <p class="project-desc">Developed a report generation system using Java Servlets enabling business stakeholders to produce structured, exportable reports from live data sources on demand.</p>
+      <div class="project-stack"><span class="stack-tag">Java</span><span class="stack-tag">Servlets</span><span class="stack-tag">SQL</span><span class="stack-tag">Spring Boot</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Integration · API</div>
+      <div class="project-title">Znuny Ticketing API</div>
+      <p class="project-desc">Built and integrated a REST API to programmatically update ticket categories in the Znuny helpdesk system, streamlining support workflows and reducing manual triage for operations teams.</p>
+      <div class="project-stack"><span class="stack-tag">REST API</span><span class="stack-tag">Java</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">Znuny</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">CI/CD · DevOps</div>
+      <div class="project-title">Git &amp; Jenkins Build Pipeline</div>
+      <p class="project-desc">Designed and implemented automated CI/CD pipelines using Git and Jenkins to standardise the build, test, and deployment process across multiple projects, improving release reliability and speed.</p>
+      <div class="project-stack"><span class="stack-tag">Jenkins</span><span class="stack-tag">Git</span><span class="stack-tag">Docker</span><span class="stack-tag">Shell</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Web · CMS</div>
+      <div class="project-title">Citra Connect Website</div>
+      <p class="project-desc">Created a professional WordPress website for Citra Connect customers, delivering a polished online presence with custom layouts, branding, and content management capabilities.</p>
+      <div class="project-stack"><span class="stack-tag">WordPress</span><span class="stack-tag">PHP</span><span class="stack-tag">HTML/CSS</span><span class="stack-tag">JavaScript</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Infrastructure · Visualisation</div>
+      <div class="project-title">Network Topology Diagrams</div>
+      <p class="project-desc">Created detailed network topology and live state diagrams to visualise infrastructure architecture, helping engineering teams understand system layout and troubleshoot operational issues.</p>
+      <div class="project-stack"><span class="stack-tag">Network Design</span><span class="stack-tag">Topology Mapping</span><span class="stack-tag">Infrastructure</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">05. Education</div>
+  <div class="section-title">Academic Background</div>
+  <div class="edu-card">
+    <div class="edu-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    </div>
+    <div>
+      <div class="edu-degree">Bachelor of Engineering in Computer Science</div>
+      <div class="edu-school">Toc-H Institute of Science and Technology, affiliated to Cochin University of Science and Technology — India</div>
+      <div class="edu-meta">2004 – 2008</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">06. Contact</div>
+  <div class="section-title">Let's Talk</div>
+  <div class="contact-inner">
+    <div>
+      <p class="contact-text">I'm actively looking for new opportunities in Auckland and beyond. Whether it's a full-time role or a project conversation, feel free to reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:nishaurao@gmail.com" class="contact-link-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div>
+          <div><div class="contact-link-label">Email</div><div class="contact-link-value">nishaurao@gmail.com</div></div>
+        </a>
+        <a href="tel:+6421982916" class="contact-link-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="contact-link-label">Phone</div><div class="contact-link-value">+64 21 982 916</div></div>
+        </a>
+        <div class="contact-link-item" style="cursor:default;">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="contact-link-label">Location</div><div class="contact-link-value">Auckland, New Zealand · PR</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-input" placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about the role or opportunity..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:fit-content;" onclick="alert('Message sent!')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Nisha Rao Udayakumar. All rights reserved.</span>
+  <span>Auckland, New Zealand</span>
+</footer>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : ''; });
+  });
+</script>
+</body>
+</html>
